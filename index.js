@@ -1,4 +1,4 @@
-// e11ddac9 is my key
+// e11ddac9 is my key e11ddac9
 
 const movieSearchBox = document.getElementById('movie-search-box');
 const searchList = document.getElementById('search-list');
@@ -13,7 +13,11 @@ async function loadMovies(searchTerm){
     if(data.Response == "True") displayMovieList(data.Search);
 }
 
+// LISTS MOVIES DOWN FROM SEARCH BOX WHILE YOU TYPE
 function findMovies(){
+    // Add null check to prevent error
+    if(!movieSearchBox) return;
+
     let searchTerm = (movieSearchBox.value).trim();
     if(searchTerm.length > 0){
         searchList.classList.remove('hide__search--list');
@@ -23,24 +27,25 @@ function findMovies(){
     }
 }
 
+// THE LIST OF MOVIES YOU SEARCHED FOR
 function displayMovieList(movies){
+    // Add null check to prevent error
+    if(!searchList) return;
+
     searchList.innerHTML = "";
-    for(let idx = 0; idx < movies.length; idx++){
+    for(let idmovie = 0; idmovie < movies.length; idmovie++){
         let movieListItem = document.createElement('div');
-        movieListItem.dataset.id = movies[idx].imdbID; // setting movie id in  data-id
+        movieListItem.dataset.id = movies[idmovie].imdbID; // setting movie id in  data-id
         movieListItem.classList.add('search__list--item');
-        if(movies[idx].Poster != "N/A")
-            moviePoster = movies[idx].Poster;
-        else 
-            moviePoster = "image_not_found.png";
+        let moviePoster = movies[idmovie].Poster != "N/A" ? movies[idmovie].Poster : "image_not_found.png";
 
         movieListItem.innerHTML = `
         <div class = "search__item--thumbnail">
             <img src = "${moviePoster}">
         </div>
         <div class = "search__item--info">
-            <h3>${movies[idx].Title}</h3>
-            <p>${movies[idx].Year}</p>
+            <h3>${movies[idmovie].Title}</h3>
+            <p>${movies[idmovie].Year}</p>
         </div>
         `;
         searchList.appendChild(movieListItem);
@@ -49,13 +54,16 @@ function displayMovieList(movies){
 }
 
 function loadMovieDetails(){
+    // Add null check to prevent error
+    if(!searchList) return;
+
     const searchListMovies = searchList.querySelectorAll('.search__list--item');
     searchListMovies.forEach(movie => {
         movie.addEventListener('click', async () => {
             // console.log(movie.dataset.id);
             searchList.classList.add('hide__search--list');
             movieSearchBox.value = "";
-            const result = await fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=e11ddac9`);
+            const result = await fetch(`https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=e11ddac9`);
             const movieDetails = await result.json();
             // console.log(movieDetails);
             displayMovieDetails(movieDetails);
@@ -64,7 +72,11 @@ function loadMovieDetails(){
 }
 
 function displayMovieDetails(details){
+    // Add null check to prevent error
+    if(!resultGrid) return;
+
     resultGrid.innerHTML = `
+    <div class = "result__grid">
     <div class = "movie-poster">
         <img src = "${(details.Poster != "N/A") ? details.Poster : "image_not_found.png"}" alt = "movie poster">
     </div>
@@ -82,6 +94,7 @@ function displayMovieDetails(details){
         <p class = "language"><b>Language:</b> ${details.Language}</p>
         <p class = "awards"><b><i class = "fas fa-award"></i></b> ${details.Awards}</p>
     </div>
+    </div>
     `;
 }
 
@@ -92,3 +105,35 @@ window.addEventListener('click', (event) => {
         searchList.classList.add('hide__search--list');
     }
 });
+
+
+
+
+// hide movie result so movie search can display over it 
+
+const hideResultGrid = document.getElementById('result-grid');
+const searchFocus = document.getElementById('movie-search-box');
+
+searchFocus.addEventListener('focus', () => {
+  hideResultGrid.style.display = 'none';
+});
+
+searchFocus.addEventListener('blur', () => {
+  hideResultGrid.style.display = 'block'; // Or whichever display value you want when not focused
+});
+
+
+// hide movie result so movie search can display over it with clear button
+
+const clearSearchList = document.getElementsByClassName('search__list--item');
+const clickClear = document.getElementsByClassName('button__clear');
+
+clickClear.addEventListener('click', () => {
+  clearSearchList.style.display = 'none';
+});
+
+clickClear.addEventListener('blur', () => {
+  clearSearchList.style.display = 'block'; // Or whichever display value you want when not focused
+});
+
+

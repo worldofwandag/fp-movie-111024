@@ -13,6 +13,7 @@ html {
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: #110e18;
 }
 
 nav {
@@ -32,9 +33,9 @@ a {
   text-decoration: none;
 }
 
-/* a:hover {
-  text-decoration: underline;
-} */
+a:hover {
+  text-decoration: none;
+}
 
 ul {
   display: flex;
@@ -65,7 +66,7 @@ h2 {
 h3 {
     margin-bottom: 12px;
     font-size: 20px;
-    color: #6030b1;
+    color: rgb(52, 52, 54);
     display: block;
     margin-block-start: 0 em;
     margin-block-end: 0.83em;
@@ -199,7 +200,7 @@ HEADER
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 500px;
+    max-width: 150px;
 }
 
 .navbar__link {
@@ -209,12 +210,12 @@ HEADER
     
 }
 
-.btn__contact {
+.btn__clear {
     display: flex;
     cursor: pointer;
     max-height: 48px;
     min-height: 48px;
-    padding: 12px 40px;
+    padding: 12px 24px;
     align-items: center;
     border: 2px #5d3eff;
     border-radius: 50px;
@@ -227,7 +228,7 @@ HEADER
     transition: all .35s ease;
 }
 
-.btn__contact:hover {
+.btn__clear:hover {
   --tw-border-opacity: 1;
   border-color: #6415ff;
   --tw-bg-opacity: 1;
@@ -272,7 +273,7 @@ input[type="text"] {
 input[type="text"]:focus {
     --tw-border-opacity: 1;
     border-color: #ffffff;
-    outline: solid 15px;
+    outline: solid 30px;
     outline-offset: 2px;
     opacity: 100%;
     color: rgba(0, 0, 0, 0.87);
@@ -311,7 +312,7 @@ input[type="text"]:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    /* cursor: none; */
     top: 0;
     bottom: 0;
     right: 0;
@@ -328,31 +329,61 @@ MOVIES
 
 */
 
+.list__container {
+  position: relative;
+  width: 100%;
+  /* display: flex;
+  align-items: center; */
+}
 
 
 .search__list{
   position: absolute;
-  right: 0;
-  top: 100%;
-  max-height: 500px;
-  overflow-y: scroll;
+  top: 50%;
+  left: 0%;
+  transform: translate(0%, 15%);
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* max-height: 500px; */
+  /* overflow-y: scroll; */
   z-index: 10;
+  /* margin: auto 0; */
 }
 .search__list .search__list--item{
-  background-color: var(--light-dark-color);
-  padding: 0.5rem;
+  background-color: #dad8ee;
+  padding: 8px;
+  margin: 8px;
   border-bottom: 1px solid var(--dark-color);
-  width: calc(350px - 8px);
+  border-radius: 10px;
+  border: 1px solid rgb(177, 197, 209);
+  width: calc(95% / 3);
+  min-height: 248px;
   color: #fff;
   cursor: pointer;
   -webkit-transition: background-color 200ms ease;
   -o-transition: background-color 200ms ease;
-  transition: background-color 200ms ease;
+  transition: background-color 300ms ease;
 }
 .search__list .search__list--item:Hover{
-  background-color: #1f1f1f;
+  background-color: #121218;
+  box-shadow: 0px 0px 20px #b04fffd7;
+  
 }
-.search__list--item{
+
+.search__list--item:hover h3{
+  color:yellow;
+}
+
+.search__list--item:hover p{
+  color:#ffffff;
+}
+
+
+.search__list--item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -361,24 +392,27 @@ MOVIES
           align-items: center;
 }
 .search__item--thumbnail img{
-  width: 40px;
+  width: 150px;
   margin-right: 1rem;
+  border: 5px solid black;
+  border-radius: 10px;
 }
 .search__item--info h3{
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 20px;
 }
 .search__item--info p{
-  font-size: 0.8rem;
+  font-size: 20px;
   margin-top: 0.5rem;
-  font-weight: 600;
+  font-weight: 300;
   opacity: 0.6;
+  color: rgb(36, 30, 48);
 }
 
 /* thumbnail */
-.search__list::-webkit-scrollbar{
+/* .search__list::-webkit-scrollbar{
   width: 8px;
-}
+} */
 .search__list::-webkit-scrollbar-track{
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
           box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
@@ -395,24 +429,54 @@ MOVIES
 }
 
 /* movie result */
-.result-container{
-  padding: 3rem 0;
+.result__container{
+  padding: 32px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.result__grid{
+  display: flex;
+  align-items: center;
+  /* justify-content: space-around; */
+  max-width: 1200px;
+  width: 100%;
+  padding: 16px;
+  position: relative;
+  border: 0px solid black;
+  border-radius: 2px;
+  box-shadow: 2px 2px 30px #0e081348;
+  background-color: #f0f1e5;
+  transition: 300ms ease-in-out;
+}
+
+.search__list--item {
+  transition: 300ms ease-in-out;
+}
+
+.search__list--item:hover {
+  transform: scale(1.04);
+}
+
+
 .movie-poster img{
-  max-width: 300px;
-  margin: 0 auto;
-  border: 4px solid #fff;
+  max-width: 280px;
+  width: 100%;
+  margin: 32px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  box-shadow: 2px 5px 30px #4e4a528e;
 }
-.movie-info{
-  text-align: center;
-  color: #fff;
-  padding-top: 3rem;
-}
+
+
 
 /* movie info stylings */
 .movie__title{
-  font-size: 2rem;
+  font-size: 24px;
   color: var(--yellow-color);
+  padding: 8px;
 }
 .movie__misc--info{
   list-style-type: none;
@@ -424,8 +488,8 @@ MOVIES
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
-          justify-content: center;
-  padding: 1rem;
+          /* justify-content: center; */
+  padding: 8px;
 }
 .movie__info .year{
   font-weight: 500;
@@ -445,6 +509,12 @@ MOVIES
   padding: 0.5rem;
   margin: 1rem 0;
 }
+
+.movie__info .actors{
+  padding: 0.5rem;
+  margin: 1rem 0;
+}
+
 .movie__info .genre{
   background-color: var(--light-dark-color);
   display: inline-block;
@@ -453,15 +523,17 @@ MOVIES
 }
 .movie__info .plot{
   max-width: 400px;
-  margin: 1rem auto;
+  margin: 8px;
 }
 .movie__info .language{
   color: var(--yellow-color);
   font-style: italic;
+  padding: 8px;
 }
 .movie__info .awards{
   font-weight: 300;
   font-size: 0.9rem;
+  padding: 8px;
 }
 .movie__info .awards i{
   color: var(--yellow-color);
@@ -469,121 +541,76 @@ MOVIES
 }
 
 
+@media (max-width: 1200px) {
+  .search__list .search__list--item{
+    width: calc(95% / 2);
+  }
 
+  .search__list{
+    justify-content: space-around;
+  }
 
+  .search__item--info {
+    margin: 0 auto;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .year__wrapper {
-  max-width: 500px;
-  width: 100%;
-  padding: 0 0 0 48px;
-  padding: 0 0x 40px;
-  display: flex;
-  flex-direction: column;
 }
 
-.year__description {
-  margin-top: 4px;
-  margin-bottom: 8px;
+@media (max-width: 780px) {
+  .search__list .search__list--item{
+    width: calc(85% / 1);
+  }
+
+  .search__list{
+    justify-content: center;
+  }
+
+  .search__item--info {
+    margin: 0 auto;
+  }
+
+  .search__item--thumbnail img{
+    width: 200px;
+  }
+
+  .search__list{
+    transform: translate(0%, 3%);
+  }
+
+  .result__grid {
+    flex-direction: column;
+  }
+
+  .movie__title{
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  .movie__info {
+    padding: 0 16px;
+  }
+
+  .movie__info .writer{
+    margin: 8px 0;
+  }
+  
+  .movie__info .actors{
+    margin: 8px 0;
+  }
 }
 
-.year__input {
-  width: 60%;
-  display: flex;
-  margin: 4px 0 36px;
+@media (max-width: 480px) {
+  .search__list .search__list--item{
+    width: calc(95% / 1);
+  }
+
+  .search__item--thumbnail img{
+    width: 150px;
 }
 
-.year__input .field {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 32px;
-}
-
-.field input[type="number"] {
-  width: 75%;
-  height: 100%;
-  outline: none;
-  font-size: 19px;
+.movie__title{
   text-align: center;
-  border-radius: 5px;
-  margin-left: 12px;
-  border: 1px solid #999;
-  -moz-appearance: textfield;
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
 
-.year__input .input__seperator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
 }
-
-.slider {
-  height: 5px;
-  border-radius: 5px;
-  background: #ddd;
-  position: relative;
-}
-
-.slider .slider__progress {
-  height: 5px;
-  left: 1%;
-  right: 1%;
-  position: absolute;
-  border-radius: 5px;
-  background: #17A2b8;
-}
-
-.range__input {
-  position: relative;
-}
-
-.range__input input{
-  position: absolute;
-  top: -5px;
-  height: 5px;
-  width: 100%;
-  background: none;
-  pointer-events: none;
-  -webkit-appearance: none;
-}
-
-input[type="range"]::-webkit-slider-thumb{
-  height: 17px;
-  width: 17px;
-  border-radius: 50%;
-  pointer-events: auto;
-  -webkit-appearance: none;
-  background: #17A2b8;
-}
-
-input[type="range"]::-moz-range-thumb{
-  height: 17px;
-  width: 17px;
-  border: none;
-  border-radius: 50%;
-  pointer-events: auto;
-  -moz-appearance: none;
-  background: #17A2b8;
-} */

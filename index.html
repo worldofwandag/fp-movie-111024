@@ -8,7 +8,7 @@
       src="https://kit.fontawesome.com/2822ebf5bb.js"
       crossorigin="anonymous"
     ></script>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
     <title>Document</title>
   </head>
   <body>
@@ -21,7 +21,7 @@
               <img src="./assets/pickflix-logo.png" alt="" class="logo" />
             </figure>
             <div class="navbar__links">
-              <a
+              <!-- <a
                 href="#"
                 class="navbar__link link__hover-effect link__hover-effect--white"
                 >Home</a
@@ -30,8 +30,8 @@
                 href="#"
                 class="navbar__link link__hover-effect link__hover-effect--white"
                 >Find Your Movie</a
-              >
-              <a href="#" class=".button btn__contact">Contact</a>
+              > -->
+              <a href="#" class=".button btn__clear">CLEAR LIST</a>
             </div>
           </div>
           <div class="search__container">
@@ -42,7 +42,7 @@
               <input
                 type="text"
                 class="form__control"
-                placeholder="Search Movie Title..."
+                placeholder="Search Media Title..."
                 id="movie-search-box"
                 onkeyup="findMovies()"
                 onclick="findMovies()"
@@ -55,14 +55,14 @@
               <div class="search__list" id="search-list">
                 <!-- list here -->
                 <!-- <div class = "search__list--item">
-            <div class = "search__item--thumbnail">
-                <img src = "medium-cover.jpg">
-            </div>
-            <div class = "search__item--info">
-                <h3>Guardians of the Galaxy Vol. 2</h3>
-                <p>2017</p>
-            </div>
-          </div> -->
+                      <div class = "search__item--thumbnail">
+                        <img src = "medium-cover.jpg">
+                       </div>
+                      <div class = "search__item--info">
+                        <h3>Guardians of the Galaxy Vol. 2</h3>
+                        <p>2017</p>
+                      </div>
+                </div> -->
               </div>
               <!-- end of search box -->
             </div>
@@ -73,7 +73,7 @@
 
       <div class="movies__container">
         <div class="result__container">
-          <div class="result__grid" id="result-grid">
+          <div id="result-grid">
             <!-- movie information here -->
             <!-- <div class = "movie-poster">
                         <img src = "medium-cover.jpg" alt = "movie poster">
