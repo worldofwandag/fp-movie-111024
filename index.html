@@ -31,11 +31,18 @@
                 class="navbar__link link__hover-effect link__hover-effect--white"
                 >Find Your Movie</a
               > -->
-              <a href="#" class=".button btn__clear">CLEAR LIST</a>
+              <button class=".button btn__clear" onclick="clearInput()">CLEAR ALL</button>
             </div>
           </div>
           <div class="search__container">
             <h1>Pick your Flix</h1>
+            <select id="filter" onchange="">
+              <option value="" selected disabled>Sort Your Flix (click)</option>
+              <option value="Oldest_To_Newest">Old to New</option>
+              <option value="Newest_To_Oldest">New to Old</option>
+              <option value="A_To_Z">Alphabetically A -> Z</option>
+              <option value="Z_To_A">Alphabetically Z -> A</option>
+           </select>
             <!-- search box -->
             <div class="search__element">
               <!-- (((search__element = "search-element"))) -->

@@ -46,7 +46,7 @@ li {
 }
 
 h1 {
-    font-weight: 500;
+    font-weight: 900;
     letter-spacing: 2px;
     text-align: center;
     letter-spacing: .1em;
@@ -238,6 +238,16 @@ HEADER
   font-weight: 900;
   font-size: 13px;
 
+
+}
+
+#filter {
+  width: 340px;
+  font-size: 16px;
+  margin-bottom: 16px;
+  padding: 8px;
+  background-color: #d5cce0;
+  border-radius: 5px;
 
 }
 

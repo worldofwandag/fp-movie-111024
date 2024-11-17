@@ -6,23 +6,25 @@ const resultGrid = document.getElementById('result-grid');
 
 // load movies from API
 async function loadMovies(searchTerm){
-    // const URL = `https://omdbapi.com/?s=${searchTerm}&page=1&apikey=e11ddac9`;
     const getMovie = await fetch(`https://omdbapi.com/?s=${searchTerm}&page=1&apikey=e11ddac9`);
     const data = await getMovie.json();
     // console.log(data.Search);
     if(data.Response == "True") displayMovieList(data.Search);
 }
 
-// LISTS MOVIES DOWN FROM SEARCH BOX WHILE YOU TYPE
+// THIS IS JUST TO DISPLAY SOMETHING AS YOU TYPE.  NOTHING IS DISPLAYED BY DEFAULT BECAUSE OF hide__search--list
 function findMovies(){
     // Add null check to prevent error
     if(!movieSearchBox) return;
 
     let searchTerm = (movieSearchBox.value).trim();
     if(searchTerm.length > 0){
+        // this displays movies when you first type because before hand, default is display:none on hide__search--list
         searchList.classList.remove('hide__search--list');
         loadMovies(searchTerm);
-    } else {
+    }
+    else {
+        // this displays none again if you haven't typed anything in the searchterm
         searchList.classList.add('hide__search--list');
     }
 }
@@ -122,18 +124,10 @@ searchFocus.addEventListener('blur', () => {
   hideResultGrid.style.display = 'block'; // Or whichever display value you want when not focused
 });
 
-
-// hide movie result so movie search can display over it with clear button
-
-const clearSearchList = document.getElementsByClassName('search__list--item');
-const clickClear = document.getElementsByClassName('button__clear');
-
-clickClear.addEventListener('click', () => {
-  clearSearchList.style.display = 'none';
-});
-
-clickClear.addEventListener('blur', () => {
-  clearSearchList.style.display = 'block'; // Or whichever display value you want when not focused
-});
-
+// Clear List Button will clear all
+function clearInput() {
+    // document.getElementById('movie-search-box').value = "";
+    document.getElementById('result-grid').style.display = 'none';
+    document.getElementsByClassName('search__list--item').style.display = 'none';
+  }
 
