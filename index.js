@@ -29,6 +29,7 @@ function findMovies(){
     }
 }
 
+
 // THE LIST OF MOVIES YOU SEARCHED FOR
 function displayMovieList(movies){
     // Add null check to prevent error
@@ -100,14 +101,15 @@ function displayMovieDetails(details){
     `;
 }
 
-
-
-window.addEventListener('click', (event) => {
-    if(event.target.className != "form__control"){
-        searchList.classList.add('hide__search--list');
+window.addEventListener("click", (event) => {
+    if (
+      event.target.className != "form__control" &&
+      event.target.className != "filter__option" &&
+      event.target.className != "filter__class"
+    ) {
+      searchList.classList.add('hide__search--list');
     }
-});
-
+  });
 
 
 
@@ -124,10 +126,33 @@ searchFocus.addEventListener('blur', () => {
   hideResultGrid.style.display = 'block'; // Or whichever display value you want when not focused
 });
 
+
 // Clear List Button will clear all
 function clearInput() {
-    // document.getElementById('movie-search-box').value = "";
     document.getElementById('result-grid').style.display = 'none';
     document.getElementsByClassName('search__list--item').style.display = 'none';
   }
 
+
+
+  // WIP filter section for sorting movies WIP
+
+function renderMovies(filter) {
+    const moviesArray = data.Search;
+
+    if (filter === "Oldest_To_Newest") {
+        moviesArray.sort((a,b) => a.Year - b.Year);
+    }   else if (filter === "Newest_To_Oldest") {
+        moviesArray.sort((a,b) => b.Year - a.Year);
+    }   else if (filter === "A_To_Z") {
+        moviesArray.sort((a,b) => a.Title - b.Title);
+    }   else if (filter === "Z_To_A") {
+        moviesArray.sort((a,b) => b.Title - a.Title);
+    }
+
+    searchList.innerHTML = moviesArray
+    .map((movie) => movieHTML(movie))
+    .join("");
+}
+
+// WIP filter section for sorting movies WIP
